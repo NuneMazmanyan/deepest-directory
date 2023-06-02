@@ -32,7 +32,7 @@ async function findDeepestDirectory(directory) {
 findDeepestDirectory(__dirname)
     .then((result) => {
         console.log(`Deepest directory is: ${result.item} with depth of ${result.level}`);
-        fs.writeFile(`${result.item}/file.txt`, 'Hello world!',err => {
+        fs.writeFile(path.join(result.item, 'file.txt'), 'Hello world!',err => {
             if (err) {
                 console.error(err);
             }
