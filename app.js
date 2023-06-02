@@ -1,5 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function findDeepestDirectory(directory) {
     let deepestLevel = 0;
@@ -26,10 +29,10 @@ async function findDeepestDirectory(directory) {
     return { level: deepestLevel, item: deepestItem || directory };
 }
 
-findDeepestDirectory('C:/Users/Nune/OneDrive/Рабочий стол/EPAM Node/deepest directory/node_modules')
+findDeepestDirectory(__dirname)
     .then((result) => {
         console.log(`Deepest directory is: ${result.item} with depth of ${result.level}`);
-        fs.writeFile(`${result.item}/file.txt`, 'Hello world!',err => {
+        fs.writeFile(`${__dirname}/file.txt`, 'Hello world!',err => {
             if (err) {
                 console.error(err);
             }
